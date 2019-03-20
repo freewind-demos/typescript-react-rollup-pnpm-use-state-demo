@@ -1,48 +1,32 @@
-JavaScript React Rollup "useState" Demo
+JavaScript React Rollup Pnpm "useState" Demo
 =======================================
 
-关键点有两个：
-
-1. rollup.config.js中需要声明：
+在使用pnpm时，哪怕在`rollup-plugin-commonjs`插件中已经设置了namedExports，比如：
 
 ```
-namedExports: { 'react': ['useState'] }
+commonjs({
+  namedExports: {
+    react: ['useState']
+  }
+})
 ```
 
-否则会报错：
-
-```
-index.ts → bundle.js...
-[!] Error: 'useState' is not exported by node_modules/react/index.js
-https://rollupjs.org/guide/en#error-name-is-not-exported-by-module-
-index.ts (1:8)
-1: import {useState} from "react";
-           ^
-2: 
-3: console.log(useState);
-Error: 'useState' is not exported by node_modules/react/index.js
-
-```
-
-2. 使用npm/yarn，而不是pnpm
-
-pnpm由于使用了hard link，导致`rollup-plugin-commonjs`无法正常的定位`react`，
-所以即使像上面那样声明了，依然会报错。
-
-需要改成：
+依然会报错，原因是由于pnpm使用了hard link，导致rollup-plugin-commonjs无法正确识别。
+只能写成如下的奇怪形式：
 
 ```
 namedExports: {
-   'node_modules/.npm-registry.compass.com/react/16.8.4/node_modules/react/index.js
-': ['useState']
+   'node_modules/.npm-registry.compass.com/react/16.8.4/node_modules/react/index.js': ['useState']
 }
 ```
 
 可以看到里面嵌入了缓存路径和版本号，不可接受。
 
+不过可以使用`require.resolve`来得到`react`真正的路径，解决这个问题。
+
 ## 运行：
 
 ```
-npm install
-npm run demo
+pnpm install
+pnpm run demo
 ```
