@@ -1,16 +1,16 @@
 {
-  "scripts": {
-    "demo": "rollup -c && node bundle.js"
-  },
-  "dependencies": {
-    "react": "16.8.4"
-  },
-  "devDependencies": {
-    "@types/react": "16.8.8",
-    "rollup": "1.6.0",
-    "rollup-plugin-commonjs": "9.2.1",
-    "rollup-plugin-node-resolve": "4.0.1",
-    "rollup-plugin-typescript2": "0.20.1",
-    "typescript": "3.3.3333"
-  }
+    "scripts": {
+        "start": "rollup -c && node bundle.js"
+    },
+    "dependencies": {
+        "react": "16.8.4"
+    },
+    "devDependencies": {
+        "@types/react": "16.8.8",
+        "rollup": "1.6.0",
+        "rollup-plugin-commonjs": "9.2.1",
+        "rollup-plugin-node-resolve": "4.0.1",
+        "rollup-plugin-typescript2": "0.20.1",
+        "typescript": "3.3.3333"
+    }
 }
